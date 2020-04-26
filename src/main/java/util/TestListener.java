@@ -9,12 +9,12 @@ public class TestListener implements ITestListener, ISuiteListener {
 	
 	@Override
 	public void onStart(ISuite suite) {
-		
+		System.out.println("Starting suite: " + suite.getName());
 	}
 	
 	@Override
 	public void onFinish(ISuite suite) {
-		
+		System.out.println("Finished executing suite: " + suite.getName());
 	}
 	
 	@Override
