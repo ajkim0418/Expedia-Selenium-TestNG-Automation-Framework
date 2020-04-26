@@ -57,10 +57,18 @@
 	<dependency>
 		<groupId>io.github.bonigarcia</groupId>
 		<artifactId>webdrivermanager</artifactId>
-		<version>3.6.0</version>
+		<version>3.8.1</version>
 		<scope>test</scope>
 	</dependency>
+
+	<!--  SLF4j bridge to prevent slfj error message -->
+	<dependency>
+		<groupId>org.apache.logging.log4j</groupId>
+		<artifactId>log4j-slf4j-impl</artifactId>
+		<version>2.11.2</version>
+	</dependency>
 		
+	
   </dependencies>
 
   <build>
