@@ -4,9 +4,10 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
+import base.BasePage;
 import pageObjects.FlightSearchPage;
 
-public class FlightSearchPageTest extends BaseTest{
+public class FlightSearchPageTest extends BasePage{
 	
 	/* This test does not enter a departing date. Verify that it does not let you proceed if there are insufficient information */
 	@Test(priority=0)

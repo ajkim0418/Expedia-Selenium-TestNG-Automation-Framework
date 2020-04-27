@@ -1,18 +1,16 @@
-package tests;
+package base;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-
 import io.github.bonigarcia.wdm.WebDriverManager;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class BaseTest {
-	WebDriver driver;
-	private static final Logger log = LogManager.getLogger(BaseTest.class);
+public class BasePage {
+	public WebDriver driver;
+	private static final Logger log = LogManager.getLogger(BasePage.class);
 	String url = "https://www.expedia.com/";
 	
 	/* Open browser, maximize, and go to link */

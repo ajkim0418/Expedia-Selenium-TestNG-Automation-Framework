@@ -4,11 +4,11 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-
+import base.BasePage;
 import pageObjects.HomePage;
 import pageObjects.LoginPage;
 
-public class LoginPageTest extends BaseTest{
+public class LoginPageTest extends BasePage{
 
 	/* Go to login screen from home page*/
 	@BeforeClass
