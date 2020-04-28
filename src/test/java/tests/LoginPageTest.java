@@ -1,15 +1,17 @@
 package tests;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
 import base.BasePage;
 import pageObjects.HomePage;
 import pageObjects.LoginPage;
 
 public class LoginPageTest extends BasePage{
-
+	private static final Logger log = LogManager.getLogger(LoginPageTest.class);
+	
 	/* Go to login screen from home page*/
 	@BeforeClass
 	public void navigateToLoginScreen() {
@@ -17,29 +19,44 @@ public class LoginPageTest extends BasePage{
 		homePage.navigateToLoginScreen();
 		Assert.assertTrue(homePage.isLoginScreenPresent());
 	}
-	
-	/* Check that the Sign In with Google option is present */
+
+	/* Verify that the Sign In with Google option is present */
 	@Test(priority=0)
 	public void verifyGoogleLoginLinkDisplayed() {
 		LoginPage login = new LoginPage(driver);
 		Assert.assertTrue(login.isGoogleSigninLinkPresent());
 	}
-	
-	/* Check that the Sign In with Facebook option is present */
+
+	/* Verify that the Sign In with Facebook option is present */
 	@Test(priority=1)
 	public void verifyFacebookLoginLinkDisplayed() {
 		LoginPage login = new LoginPage(driver);
 		Assert.assertTrue(login.isFacebookSigninLinkPresent());
 	}
-	
-	/* Test a successful login with correct credentials */
+
+	/* Verify clicking the forgot password link loads reset password screen */
 	@Test(priority=2)
-	public void loginCorrectCredentials() {
+	public void clickForgotPasswordLink() {
 		LoginPage login = new LoginPage(driver);
-		login.typeEmailAddress("username");
+		login.clickForgotPassword();
+		Assert.assertTrue(login.didResetPasswordScreenLoad());
+		login.clickBackButton();
+	}
+
+	/* Test a successful login with correct credentials */
+	@Test(priority=3, groups="regression")
+	public void loginCorrectCredentials() throws InterruptedException {
+		LoginPage login = new LoginPage(driver);
+		login.typeEmailAddress("email");
 		login.typePassword("password");
 		login.uncheckKeepSignedIn();
 		login.clickLoginButton();
-		Assert.assertTrue(login.isLoginSuccessful());
+		try {
+			Assert.assertTrue(login.isLoginSuccessful());
+			log.info("Login successful, returning to home page");
+		} catch(Exception e) {
+			Assert.assertTrue(login.didRecaptchaAppear());
+			log.debug("Login successful, but recaptcha human verification bot appeared");
+		}
 	}
 }
