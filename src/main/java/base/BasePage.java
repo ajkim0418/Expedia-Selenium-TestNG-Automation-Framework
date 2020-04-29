@@ -2,6 +2,7 @@ package base;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -9,19 +10,20 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class BasePage {
-	public WebDriver driver;
+	public static WebDriver driver;
 	private static final Logger log = LogManager.getLogger(BasePage.class);
 	String url = "https://www.expedia.com/";
 	
 	/* Open browser, maximize, and go to link */
 	@BeforeClass(alwaysRun=true)
-	public void setup() {
+	public void setup(ITestContext context) {
 		WebDriverManager.chromedriver().setup();
 		driver = new ChromeDriver();
 		log.info("WebDriver configured");
 		driver.manage().window().maximize();
 		log.info("Opening browser and maximizing window");
 		driver.get(url);
+		context.setAttribute("WebDriver", driver); //Set attribute to call in listener class
 		log.info("Navigating to expedia.com");
 		
 	}
@@ -29,7 +31,11 @@ public class BasePage {
 	/* Cleanup */
 	@AfterClass(alwaysRun=true)
 	public void tearDown() {
+		if(driver !=null) {
 		driver.quit();
+		}else {
+			System.out.println("null driver");
+		}
 		log.info("Quitting browser");
 	}
 }
