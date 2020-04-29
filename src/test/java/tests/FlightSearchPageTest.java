@@ -23,9 +23,15 @@ public class FlightSearchPageTest extends BasePage{
 	}
 	
 	/* Verify the search flow of a one way flight */
-	@Test(priority=1)
+	@Test(priority=1, groups="regression")
 	public void searchForFlight() {
 		FlightSearchPage flightSearch = new FlightSearchPage(driver);
+		try {
+			flightSearch.clickFlightsTab();
+			flightSearch.clickOneWayTab();
+		} catch(Exception e) {
+			
+		}
 		//Search for an airport in the 'Flying from' textbox and select the matching text
 		flightSearch.searchForDepartingAirport("san francisco");
 		flightSearch.clickFromAirportSuggestionsList("San Francisco (SFO - San Francisco Intl.)");
@@ -56,7 +62,7 @@ public class FlightSearchPageTest extends BasePage{
 	}
 	
 	/* Verify that clicking on 'Search' loads a new page and flights are loaded */
-	@Test(priority=3, dependsOnMethods="searchForFlight")
+	@Test(priority=3, dependsOnMethods="searchForFlight", groups="regression")
 	public void verifySearchButtonLoadsNewPage() {
 		FlightSearchPage flightSearch = new FlightSearchPage(driver);
 		flightSearch.clickSearchButton();

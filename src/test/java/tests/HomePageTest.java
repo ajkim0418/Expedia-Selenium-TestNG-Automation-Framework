@@ -2,7 +2,6 @@ package tests;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
 import base.BasePage;
 import pageObjects.HomePage;
 
@@ -23,7 +22,7 @@ public class HomePageTest extends BasePage{
 	}
 	
 	/* Check that the virtual chat icon is loaded in the homepage */
-	@Test(priority=2)
+	@Test(priority=2, groups="regression")
 	public void verifyVirtualChatIconLoaded() {
 		HomePage homePage = new HomePage(driver);
 		Assert.assertTrue(homePage.isChatIconPresent());

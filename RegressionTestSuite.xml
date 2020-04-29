@@ -14,8 +14,8 @@
 		</groups>
 
 		<classes>
-			<class name="tests.LoginPageTest" />
 			<class name="tests.HomePageTest" />
+			<class name="tests.LoginPageTest" />
 			<class name="tests.FlightSearchPageTest" />
 		</classes>
 	</test>

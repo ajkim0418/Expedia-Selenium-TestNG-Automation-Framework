@@ -13,7 +13,7 @@ public class LoginPageTest extends BasePage{
 	private static final Logger log = LogManager.getLogger(LoginPageTest.class);
 	
 	/* Go to login screen from home page*/
-	@BeforeClass
+	@BeforeClass(alwaysRun=true)
 	public void navigateToLoginScreen() {
 		HomePage homePage = new HomePage(driver);
 		homePage.navigateToLoginScreen();
@@ -47,8 +47,8 @@ public class LoginPageTest extends BasePage{
 	@Test(priority=3, groups="regression")
 	public void loginCorrectCredentials() throws InterruptedException {
 		LoginPage login = new LoginPage(driver);
-		login.typeEmailAddress("email");
-		login.typePassword("password");
+		login.typeEmailAddress("juntestuser@gmail.com");
+		login.typePassword("testing123");
 		login.uncheckKeepSignedIn();
 		login.clickLoginButton();
 		try {
