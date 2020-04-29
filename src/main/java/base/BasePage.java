@@ -31,11 +31,7 @@ public class BasePage {
 	/* Cleanup */
 	@AfterClass(alwaysRun=true)
 	public void tearDown() {
-		if(driver !=null) {
 		driver.quit();
-		}else {
-			System.out.println("null driver");
-		}
 		log.info("Quitting browser");
 	}
 }
