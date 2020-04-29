@@ -39,7 +39,7 @@ public class TestListener implements ITestListener, ISuiteListener {
 	public void onTestFailure(ITestResult result) {
 		System.out.println("Status: FAILED");
 		String fileName = String.format("Screenshot-%s.jpg", Calendar.getInstance().getTimeInMillis());
-		WebDriver driver = (WebDriver)result.getTestContext().getAttribute("WebDriver");
+		WebDriver driver = (WebDriver)result.getTestContext().getAttribute("WebDriver"); //use string from setAttribute from BasePage
 		File srcFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 		File destFile = new File("./screenshots/" + fileName);
 		try {
