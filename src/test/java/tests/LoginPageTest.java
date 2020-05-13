@@ -5,11 +5,12 @@ import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import base.BasePage;
+
+import pageObjects.BasePage;
 import pageObjects.HomePage;
 import pageObjects.LoginPage;
 
-public class LoginPageTest extends BasePage{
+public class LoginPageTest extends BaseTest{
 	private static final Logger log = LogManager.getLogger(LoginPageTest.class);
 	
 	/* Go to login screen from home page*/
@@ -47,10 +48,10 @@ public class LoginPageTest extends BasePage{
 	@Test(priority=3, groups="regression")
 	public void loginCorrectCredentials() throws InterruptedException {
 		LoginPage login = new LoginPage(driver);
-		login.typeEmailAddress("juntestuser@gmail.com");
-		login.typePassword("testing123");
-		login.uncheckKeepSignedIn();
-		login.clickLoginButton();
+		login.typeEmailAddress("")
+			.typePassword("")
+			.uncheckKeepSignedIn()
+			.clickLoginButton();
 		try {
 			Assert.assertTrue(login.isLoginSuccessful());
 			log.info("Login successful, returning to home page");

@@ -35,8 +35,9 @@ public class LoginPage extends BasePage{
 	}
 
 	/* Click the forgot password button */
-	public void clickForgotPassword() {
+	public LoginPage clickForgotPassword() {
 		driver.findElement(forgotPassword).click();
+		return this;
 	}
 
 	/* Check that the password reset screen loaded */
@@ -45,32 +46,37 @@ public class LoginPage extends BasePage{
 	}
 
 	/* Click the back button to go back to the main login screen */
-	public void clickBackButton() {
+	public LoginPage clickBackButton() {
 		driver.findElement(backButton).click();
+		return this;
 	}
 
 	/* Get the email textbox element and type entered email */
-	public void typeEmailAddress(String email) {
+	public LoginPage typeEmailAddress(String email) {
 		driver.findElement(emailField).clear();
 		driver.findElement(emailField).sendKeys(email);
+		return this;
 	}
 
 	/* Get the password textbox element and type entered password */
-	public void typePassword(String password) {
+	public LoginPage typePassword(String password) {
 		driver.findElement(passwordField).clear();
 		driver.findElement(passwordField).sendKeys(password);
+		return this;
 	}
 
 	/* If the Keep me signed in checkbox is checked, uncheck it */
-	public void uncheckKeepSignedIn() {
+	public LoginPage uncheckKeepSignedIn() {
 		if(driver.findElement(keepMeSignedInCheckbox).isSelected()) {
 			driver.findElement(keepMeSignedInCheckbox).click();
 		}
+		return this;
 	}
 
 	/* Click the Sign in button */
-	public void clickLoginButton() {
+	public LoginPage clickLoginButton() {
 		driver.findElement(signinButton).click();
+		return this;
 	}
 
 	/* When a user successfully logs in, the home page displays "Hello, username." Check that this text appears */

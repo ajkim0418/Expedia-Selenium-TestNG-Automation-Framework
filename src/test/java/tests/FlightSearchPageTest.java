@@ -3,22 +3,20 @@ package tests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-
-import base.BasePage;
 import pageObjects.FlightSearchPage;
 
-public class FlightSearchPageTest extends BasePage{
+public class FlightSearchPageTest extends BaseTest{
 	
 	/* This test does not enter a departing date. Verify that it does not let you proceed if there are insufficient information */
 	@Test(priority=0)
 	public void cannotProceedSearchWithInsufficientInformation() {
 		FlightSearchPage flightSearch = new FlightSearchPage(driver);
-		flightSearch.clickFlightsTab();
-		flightSearch.clickOneWayTab();
-		flightSearch.searchForDepartingAirport("san francisco");
-		flightSearch.searchForArrivingAirport("seattle");
-		flightSearch.clickSearchButton();
-		flightSearch.closePopup();
+		flightSearch.clickFlightsTab()
+					.clickOneWayTab()
+					.searchForDepartingAirport("san francisco")
+					.searchForArrivingAirport("seattle")
+					.clickSearchButton()
+					.closePopup();
 		Assert.assertTrue(flightSearch.errorMessageDisplayed());
 	}
 	
@@ -27,22 +25,22 @@ public class FlightSearchPageTest extends BasePage{
 	public void searchForFlight() {
 		FlightSearchPage flightSearch = new FlightSearchPage(driver);
 		try {
-			flightSearch.clickFlightsTab();
-			flightSearch.clickOneWayTab();
+			flightSearch.clickFlightsTab()
+						.clickOneWayTab();
 		} catch(Exception e) {
 			
 		}
 		//Search for an airport in the 'Flying from' textbox and select the matching text
-		flightSearch.searchForDepartingAirport("san francisco");
-		flightSearch.clickFromAirportSuggestionsList("San Francisco (SFO - San Francisco Intl.)");
+		flightSearch.searchForDepartingAirport("san francisco")
+					.clickFromAirportSuggestionsList("San Francisco (SFO - San Francisco Intl.)")
 
 		//Search for an airport in the 'Going to' textbox and select the matching text
-		flightSearch.searchForArrivingAirport("seattle");
-		flightSearch.clickFromAirportSuggestionsList("Seattle (SEA - Seattle-Tacoma Intl.)");
+					.searchForArrivingAirport("seattle")
+					.clickFromAirportSuggestionsList("Seattle (SEA - Seattle-Tacoma Intl.)")
 		
 		//Select the date in the calendar box
-		flightSearch.openCalendarSelection();
-		flightSearch.chooseDate("30");
+					.openCalendarSelection()
+					.chooseDate("30");
 	}
 
 	/* Verify the 'Advanced options' dropdown can be opened, and the preferred class can be changed */

@@ -2,10 +2,11 @@ package tests;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import base.BasePage;
+
+import pageObjects.BasePage;
 import pageObjects.HomePage;
 
-public class HomePageTest extends BasePage{
+public class HomePageTest extends BaseTest{
 
 	/* Check that the title of the homepage matches expected title */
 	@Test(priority=0)

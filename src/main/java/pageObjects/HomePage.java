@@ -27,9 +27,10 @@ public class HomePage extends BasePage{
 	}
 
 	/* Click on Account drop down and Sign In button to open login screen */
-	public void navigateToLoginScreen() {
+	public HomePage navigateToLoginScreen() {
 		driver.findElement(accountsDropDown).click();
 		driver.findElement(signinLink).click();
+		return this;
 	}
 
 	public boolean isLoginScreenPresent() {
