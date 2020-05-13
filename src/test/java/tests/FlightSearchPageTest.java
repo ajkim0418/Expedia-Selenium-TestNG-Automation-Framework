@@ -12,11 +12,11 @@ public class FlightSearchPageTest extends BaseTest{
 	public void cannotProceedSearchWithInsufficientInformation() {
 		FlightSearchPage flightSearch = new FlightSearchPage(driver);
 		flightSearch.clickFlightsTab()
-					.clickOneWayTab()
-					.searchForDepartingAirport("san francisco")
-					.searchForArrivingAirport("seattle")
-					.clickSearchButton()
-					.closePopup();
+				.clickOneWayTab()
+				.searchForDepartingAirport("san francisco")
+				.searchForArrivingAirport("seattle")
+				.clickSearchButton()
+				.closePopup();
 		Assert.assertTrue(flightSearch.errorMessageDisplayed());
 	}
 	
@@ -26,7 +26,7 @@ public class FlightSearchPageTest extends BaseTest{
 		FlightSearchPage flightSearch = new FlightSearchPage(driver);
 		try {
 			flightSearch.clickFlightsTab()
-						.clickOneWayTab();
+					.clickOneWayTab();
 		} catch(Exception e) {
 			
 		}
