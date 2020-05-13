@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class FlightSearchPage {
+public class FlightSearchPage extends BasePage{
 	
 	/* Locators */
 	By flightsTab = By.id("tab-flight-tab-hp");
@@ -28,12 +28,8 @@ public class FlightSearchPage {
 	By loadedFlights = By.xpath("//span[contains(text(), 'Details & baggage fees')]");
 	By preferredClassDropdown = By.cssSelector("#flight-advanced-preferred-class-hp-flight");
 	
-	WebDriver driver; 
-	WebDriverWait wait;
-	
 	public FlightSearchPage(WebDriver driver) {
-		this.driver=driver;
-		wait = new WebDriverWait(driver, 20);
+		super(driver);
 	}
 	
 	/* Click the 'flights' tab */

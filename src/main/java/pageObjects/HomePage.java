@@ -8,8 +8,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class HomePage {
-	
+public class HomePage extends BasePage{
+
 	/* Locators */
 	By accountsDropDown = By.cssSelector("#header-account-menu");
 	By signinLink = By.cssSelector("#account-signin");
@@ -21,47 +21,43 @@ public class HomePage {
 	By virtualChatIframe = By.cssSelector("#web-messenger-container");
 	By virtualChatIcon = By.xpath("//div[contains(@class,'messenger-button-icon')]//img");
 	By virtualChatHeader = By.xpath("//div[@id='header'][contains(text(), 'How can we help?')]");
-	
-	WebDriver driver;
-	WebDriverWait wait;
-	
+
 	public HomePage(WebDriver driver) {
-		this.driver=driver;
-		wait = new WebDriverWait(driver, 10);
+		super(driver);
 	}
-	
+
 	/* Click on Account drop down and Sign In button to open login screen */
 	public void navigateToLoginScreen() {
 		driver.findElement(accountsDropDown).click();
 		driver.findElement(signinLink).click();
 	}
-	
+
 	public boolean isLoginScreenPresent() {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(signinButton));
 		return driver.findElement(signinButton).isDisplayed();
 	}
-	
+
 	/* Get the title of the current page */
 	public String getTitle() {
 		return driver.getTitle();
 	}
-	
+
 	/* Check if logo is displayed */
 	public boolean getLogo() {
 		return driver.findElement(expediaLogo).isDisplayed();
 	}
-	
+
 	/* Check if chat icon loads */
 	public boolean isChatIconPresent() {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(virtualChatIframe));
 		return driver.findElement(virtualChatIframe).isDisplayed();
 	}
-	
+
 	/* Get all the elements of the different navigation buttons */
 	public List<WebElement> getNavigationTab(){
 		return driver.findElement(navigationTab).findElements(individualTabs);
 	}
-	
-	
+
+
 }
 

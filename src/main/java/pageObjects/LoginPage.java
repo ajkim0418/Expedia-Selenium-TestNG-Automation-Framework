@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class LoginPage {
+public class LoginPage extends BasePage{
 
 	/* Locators */
 	By emailField = By.cssSelector("#gss-signin-email");
@@ -20,12 +20,8 @@ public class LoginPage {
 	By greetingUserText = By.xpath("//span[contains(@class,'nonArrangedUser')][contains(text(), 'Hello, ')]");
 	By recaptchaChallenge = By.xpath("//iframe[@title='recaptcha challenge']");
 
-	WebDriver driver;
-	WebDriverWait wait;
-
 	public LoginPage(WebDriver driver) {
-		this.driver=driver;
-		wait = new WebDriverWait(driver, 5);
+		super(driver);
 	}
 
 	/* Check that the Sign In with Google option is displayed */
