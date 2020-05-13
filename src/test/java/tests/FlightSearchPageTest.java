@@ -12,11 +12,11 @@ public class FlightSearchPageTest extends BaseTest{
 	public void cannotProceedSearchWithInsufficientInformation() {
 		FlightSearchPage flightSearch = new FlightSearchPage(driver);
 		flightSearch.clickFlightsTab()
-		.clickOneWayTab()
-		.searchForDepartingAirport("san francisco")
-		.searchForArrivingAirport("seattle")
-		.clickSearchButton()
-		.closePopup();
+			.clickOneWayTab()
+			.searchForDepartingAirport("san francisco")
+			.searchForArrivingAirport("seattle")
+			.clickSearchButton()
+			.closePopup();
 		Assert.assertTrue(flightSearch.errorMessageDisplayed());
 	}
 	
@@ -26,21 +26,21 @@ public class FlightSearchPageTest extends BaseTest{
 		FlightSearchPage flightSearch = new FlightSearchPage(driver);
 		try {
 			flightSearch.clickFlightsTab()
-					.clickOneWayTab();
+				.clickOneWayTab();
 		} catch(Exception e) {
 			
 		}
 		//Search for an airport in the 'Flying from' textbox and select the matching text
 		flightSearch.searchForDepartingAirport("san francisco")
-					.clickFromAirportSuggestionsList("San Francisco (SFO - San Francisco Intl.)")
+			.clickFromAirportSuggestionsList("San Francisco (SFO - San Francisco Intl.)")
 
 		//Search for an airport in the 'Going to' textbox and select the matching text
-					.searchForArrivingAirport("seattle")
-					.clickFromAirportSuggestionsList("Seattle (SEA - Seattle-Tacoma Intl.)")
+			.searchForArrivingAirport("seattle")
+			.clickFromAirportSuggestionsList("Seattle (SEA - Seattle-Tacoma Intl.)")
 		
 		//Select the date in the calendar box
-					.openCalendarSelection()
-					.chooseDate("30");
+			.openCalendarSelection()
+			.chooseDate("30");
 	}
 
 	/* Verify the 'Advanced options' dropdown can be opened, and the preferred class can be changed */
